@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroMarketPlace - Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-left">
+      <h1 class="logo-text">AGROMARKETPLACE</h1>
+    </div>
+    <div class="header-center">
+      <input type="text" placeholder="Buscar productos..." class="search-box">
+    </div>
+    <div class="header-right">
+
+      <button class="filter-btn">Todos</button>
+      <button class="filter-btn">Frutas</button>
+      <button class="filter-btn">Verduras</button>
+      <button class="filter-btn">Otros</button>
+      <a href="/publicar.html"><button class="publish-btn">Publicar</button></a>
+
+      <form action="/logout" method="POST" style="display:inline;">
+        <button class="logout-btn">Cerrar sesión</button>
+      </form>
+    </div>
+  </header>
+  <div class="banner">
+  <img src="https://images.unsplash.com/photo-1559740509-8202abdaa7df?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+</div> 
+  
+
+
+<section id="lista-productos">
+  <h2>Productos disponibles</h2>
+  <div id="productos-container"></div>
+</section>
+
+
+<script type="module" src="/js/home.js"></script>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publicar Producto - AgroMarketPlace</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Publicar nuevo producto</h2>
+
+  <form id="form-producto">
+    <label>Nombre:<br />
+      <input type="text" name="nombre" required />
+    </label><br /><br />
+
+    <label>Categoría:<br />
+      <select name="categoria" required>
+        <option value="Frutas">Frutas</option>
+        <option value="Verduras">Verduras</option>
+        <option value="Otros">Otros</option>
+      </select>
+    </label><br /><br />
+
+    <label>Precio:<br />
+      <input type="number" name="precio" step="0.01" required />
+    </label><br /><br />
+
+    <label>Descripción:<br />
+      <textarea name="descripcion" required></textarea>
+    </label><br /><br />
+
+    <label>URL imagen:<br />
+      <input type="url" name="imagen" />
+    </label><br /><br />
+
+    <label>Número de WhatsApp:<br />
+  <input type="tel" name="whatsapp" placeholder="Ej: 549 1123456789" required />
+</label><br /><br />
+
+
+    <button type="submit">Publicar</button>
+  </form>
+
+  <script type="module" src="/js/publicar.js"></script>
+</body>
+</html>
