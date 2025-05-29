@@ -162,6 +162,11 @@
   max-width: 400px;
 }
 
+#container-form {
+  margin-left: 50px;
+  margin-bottom: 25px;
+}
+
 #form-producto input,
 #form-producto select,
 #form-producto textarea {

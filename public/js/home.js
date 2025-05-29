@@ -8,15 +8,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 let productos = [];
 
   try {
-    productos = await api.obtenerProductos();
-
+     productos = await api.obtenerProductos();
     vista.mostrarProductos(productos);
   } catch (error) {
     vista.mostrarNotificacion('Error al cargar productos', false);
   }
 
 const botonesFiltro = document.querySelectorAll('.filter-btn');
-
   botonesFiltro.forEach(boton => {
     boton.addEventListener('click', () => {
       const categoriaSeleccionada = boton.textContent;
@@ -27,6 +25,14 @@ const botonesFiltro = document.querySelectorAll('.filter-btn');
       const filtrados = productos.filter(p => p.categoria === categoriaSeleccionada);
       vista.mostrarProductos(filtrados);
     });
+  });
+    const buscador = document.querySelector('.search-box');
+    buscador.addEventListener('input', () => {
+    const texto = buscador.value.trim();
+    const filtrados = productos.filter(p =>
+      p.nombre.includes(texto) || p.descripcion.includes(texto)
+    );
+    vista.mostrarProductos(filtrados);
   });
 });
 

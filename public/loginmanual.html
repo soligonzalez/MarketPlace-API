@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroMarket - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="main-container">
+    <div class="title-container">
+      <h1 class="login-title">AgroMarket</h1>
+      <img src="https://static.vecteezy.com/system/resources/previews/023/258/397/non_2x/sprout-graphic-clipart-design-free-png.png" class="login-icon" alt="icon login" >
+    </div>
+
+    <form class="login-form">
+      <h2>Iniciar Sesión</h2>
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input id="email" class="custom-input" type="email" placeholder="ejemplo@gmail.com" required />
+
+      <label for="password" class="form-label">Contraseña</label>
+      <input id="password" class="custom-input" type="password" placeholder="Introduzca su contraseña" required />
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="terminos" required />
+        <label for="terminos">Aceptar términos y condiciones</label>
+      </div>
+
+      <button type="submit" id="boton1">Iniciar Sesión</button>
+    </form>
+
+    <div class="container">
+      <a id="google-login" class="google-login-button" href="/auth/google">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
+          alt="Google Icon"
+          class="google-icon"/>
+        Iniciar sesión con Google
+      </a>
+    </div>
+
+    <p>¿No tienes una cuenta todavía?</p>
+    <a href="/registro" id="boton2">Regístrate</a>
+  </div>
+</body>
+</html>
