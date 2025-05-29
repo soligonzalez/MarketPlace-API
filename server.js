@@ -34,7 +34,7 @@ class DictionaryBackendServer {
      res.redirect("/login");
    })
 
-   // ✅ NUEVA RUTA: guardar productos
+   // ruta para guardar los productos, solo cuando estas logueado
     app.post('/productos', authentication.checkAuthenticated, this.guardarProducto);
 
     app.get('/productos', async (req, res) => {
@@ -50,7 +50,7 @@ class DictionaryBackendServer {
 
 
    
-    // Start server
+    // levanta el servidor
     app.listen(3000, () => console.log('Listening on port 3000'));
   }
 
@@ -70,7 +70,7 @@ class DictionaryBackendServer {
 
 
 
-// ✅ NUEVA FUNCIÓN: guarda productos enviados por el usuario
+//guarda productos creados por el usuario
   async guardarProducto(req, res) {
     try {
       const producto = {
@@ -89,7 +89,6 @@ class DictionaryBackendServer {
 
       res.json({ success: true, mensaje: "Producto guardado con éxito" });
     } catch (err) {
-      console.error("Error al guardar el producto:", err);
       res.status(500).json({ success: false, mensaje: "Error al guardar el producto" });
     }
   }

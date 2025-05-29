@@ -14,7 +14,7 @@ class Authentication {
             saveUninitialized: true,
         }));
 
-        app.use(passport.initialize()); // init passport on every route call
+        app.use(passport.initialize()); 
         app.use(passport.session());
 
         passport.use(new GoogleStrategy({
@@ -44,7 +44,6 @@ class Authentication {
 
             return done(null, profile);
         } catch (err) {
-            console.error("Error guardando usuario en MongoDB:", err);
             return done(err);
         }
     }

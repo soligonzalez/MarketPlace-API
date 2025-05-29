@@ -1,4 +1,3 @@
-// ✅ ProductoAPI: se comunica con el backend
 export class ProductoAPI {
   constructor() {
     this.apiUrl = '/productos';
@@ -9,7 +8,6 @@ export class ProductoAPI {
       const respuesta = await fetch(this.apiUrl);
       return await respuesta.json();
     } catch (error) {
-      console.error('Error al obtener productos:', error);
       throw error;
     }
   }
@@ -23,19 +21,15 @@ export class ProductoAPI {
       });
       return await respuesta.json();
     } catch (error) {
-      console.error('Error al guardar producto:', error);
       throw error;
     }
   }
 }
 
-// ✅ ProductoVista: muestra productos en la página
+// muestra los productos en la página
 export class ProductoVista {
   constructor(contenedorId) {
     this.contenedor = document.getElementById(contenedorId);
-    if (!this.contenedor) {
-      throw new Error(`Contenedor con ID ${contenedorId} no encontrado`);
-    }
   }
 
   mostrarProductos(productos) {
@@ -77,7 +71,7 @@ export class ProductoVista {
   }
 }
 
-// ✅ FormularioProducto: maneja el envío del formulario
+// maneja el envío del formulario
 export class FormularioProducto {
   constructor(formularioId, alEnviar) {
     this.formulario = document.getElementById(formularioId);
@@ -92,10 +86,10 @@ export class FormularioProducto {
     evento.preventDefault();
 
     const imagenUrl = this.formulario.imagen.value;
-    // ✅ Validar que la URL de imagen termine en .jpg, .jpeg, .png, .gif, .webp
-  const esValida = /\.(jpeg|jpg|png|gif|webp)$/i.test(imagenUrl);
+
+    const esValida = /\.(jpeg|jpg|png|gif|webp)$/i.test(imagenUrl);
   if (imagenUrl && !esValida) {
-    alert('❌ La URL de la imagen debe terminar en .jpg, .jpeg, .png, .gif o .webp');
+    alert('La URL de la imagen debe terminar en .jpg, .jpeg, .png, .gif o .webp');
     return;
   }
     const producto = {
