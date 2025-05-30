@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroMarket - Registro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css" /> <!-- Reutilizamos el mismo estilo -->
+    <script type="module" src="js/register.js" defer></script>
+</head>
+<body>
+  <div class="main-container">
+    <div class="title-container">
+      <h1 class="login-title">AgroMarket</h1>
+      <img src="https://static.vecteezy.com/system/resources/previews/023/258/397/non_2x/sprout-graphic-clipart-design-free-png.png" class="login-icon" alt="icon login">
+    </div>
+
+    <form id="register-form" class="login-form">
+      <h2>Registrarse</h2>
+      <label for="reg-username" class="form-label">Correo electrónico</label>
+      <input id="reg-username" class="custom-input" type="email" placeholder="ejemplo@gmail.com" required />
+
+      <label for="reg-password" class="form-label">Contraseña</label>
+      <input id="reg-password" class="custom-input" type="password" placeholder="Crea una contraseña" required />
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="terminos" required />
+        <label for="terminos">Aceptar términos y condiciones</label>
+      </div>
+
+      <button type="submit" id="boton1">Registrarse</button>
+    </form>
+
+    <p>¿Ya tenés una cuenta?</p>
+    <a href="/login" id="boton2">Iniciar sesión</a>
+  </div>
+</body>
+</html>
