@@ -4,60 +4,62 @@ export class ProductoAPI {
   }
 
   async obtenerProductos() {
-    try {
-      const respuesta = await fetch(this.apiUrl);
-      return await respuesta.json();
-    } catch (error) {
-      throw error;
-    }
+    const respuesta = await fetch(this.apiUrl);
+    return await respuesta.json();
   }
 
   async guardarProducto(producto) {
-    try {
-      const respuesta = await fetch(this.apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(producto)
-      });
-      return await respuesta.json();
-    } catch (error) {
-      throw error;
-    }
+    const respuesta = await fetch(this.apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(producto)
+    });
+    return await respuesta.json();
+  }
+
+  async eliminarProducto(id) {
+    const respuesta = await fetch(`${this.apiUrl}/${id}`, {
+      method: 'DELETE'
+    });
+    return await respuesta.json();
   }
 }
 
-// muestra los productos en la página
 export class ProductoVista {
-  constructor(contenedorId) {
+  constructor(contenedorId, usuarioActual = null) {
     this.contenedor = document.getElementById(contenedorId);
+    this.usuarioActual = usuarioActual;
   }
 
   mostrarProductos(productos) {
     this.contenedor.innerHTML = '';
-    if (productos.length === 0) {
-      this.mostrarMensajeVacio();
-      return;
-    }
-
-    productos.forEach(producto => {
-      const elemento = this.crearElementoProducto(producto);
-      this.contenedor.appendChild(elemento);
-    });
+    if (productos.length === 0) return this.mostrarMensajeVacio();
+    productos.forEach(p =>
+      this.contenedor.appendChild(this.crearElementoProducto(p))
+    );
   }
 
-  crearElementoProducto(producto) {
+  crearElementoProducto(p) {
     const div = document.createElement('div');
-    div.classList.add('producto');
-    div.innerHTML = `
-      <h3>${producto.nombre}</h3>
-      <p><strong>Categoría:</strong> ${producto.categoria}</p>
-      <p><strong>Precio:</strong> $${producto.precio}</p>
-      <p>${producto.descripcion}</p>
-      ${producto.imagen ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="max-width: 200px;">` : ''}
-      ${producto.vendedor ? `<p><strong>Vendedor:</strong> ${producto.vendedor}</p>` : ''}
-      ${producto.whatsapp ? `<p><a href="https://wa.me/${producto.whatsapp}" target="_blank" class="whatsapp-btn">📱 Contactar por WhatsApp</a></p>` : ''}
+    div.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
+    const usuario = this.usuarioActual || {};
 
-      <hr>
+    div.innerHTML = `
+      <div class="card h-100 shadow-sm border-0" style="border-radius: 15px;">
+        ${p.imagen ? `<img src="${p.imagen}" class="card-img-top" alt="${p.nombre}" style="object-fit: cover; height: 180px; border-top-left-radius: 15px; border-top-right-radius: 15px;">` : ''}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${p.nombre}</h5>
+          <p class="card-text"><strong>Categoría:</strong> ${p.categoria}</p>
+          <p class="card-text"><strong>Precio ARS (kg):</strong> $${p.precio}</p>
+          <p class="card-text">${p.descripcion}</p>
+          ${p.vendedor ? `<p class="card-text"><strong>Vendedor:</strong> ${p.vendedor}</p>` : ''}
+          ${p.whatsapp ? `<a href="https://wa.me/${p.whatsapp}" target="_blank" class="btn btn-whatsapp mb-2">📱 WhatsApp</a>` : ''}
+          ${(usuario?.email && usuario.email === p.email) ? `
+            <a href="/editar.html?id=${p._id}" class="btn btn-sm btn-outline-primary mb-1">✏ Editar</a>
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto('${p._id}')">🗑 Eliminar</button>
+          ` : ''}
+        </div>
+      </div>
     `;
     return div;
   }
@@ -71,27 +73,23 @@ export class ProductoVista {
   }
 }
 
-// maneja el envío del formulario
 export class FormularioProducto {
   constructor(formularioId, alEnviar) {
     this.formulario = document.getElementById(formularioId);
     this.callbackEnvio = alEnviar;
-    if (!this.formulario) {
-      throw new Error(`Formulario con ID ${formularioId} no encontrado`);
-    }
+    if (!this.formulario) throw new Error(`Formulario con ID ${formularioId} no encontrado`);
     this.formulario.addEventListener('submit', this.manejarEnvio.bind(this));
   }
 
   manejarEnvio(evento) {
     evento.preventDefault();
-
     const imagenUrl = this.formulario.imagen.value;
-
     const esValida = /\.(jpeg|jpg|png|gif|webp)$/i.test(imagenUrl);
-  if (imagenUrl && !esValida) {
-    alert('La URL de la imagen debe terminar en .jpg, .jpeg, .png, .gif o .webp');
-    return;
-  }
+    if (imagenUrl && !esValida) {
+      alert('La URL de la imagen debe terminar en .jpg, .jpeg, .png, .gif o .webp');
+      return;
+    }
+
     const producto = {
       nombre: this.formulario.nombre.value,
       categoria: this.formulario.categoria.value,
@@ -101,10 +99,31 @@ export class FormularioProducto {
       whatsapp: this.formulario.whatsapp.value,
     };
     this.callbackEnvio(producto);
+    this.limpiar();
   }
 
   limpiar() {
     this.formulario.reset();
   }
 }
+
+// ✅ Eliminar producto como función global, pero dejarlo accesible
+export async function eliminarProducto(id) {
+  if (!confirm("¿Estás seguro que querés eliminar este producto?")) return;
+  try {
+    const api = new ProductoAPI();
+    const res = await api.eliminarProducto(id);
+    if (res.success) {
+      alert("Producto eliminado correctamente");
+      location.reload();
+    } else {
+      alert("Error al eliminar el producto");
+    }
+  } catch (err) {
+    alert("Error al procesar la solicitud");
+  }
+}
+
+
+
 

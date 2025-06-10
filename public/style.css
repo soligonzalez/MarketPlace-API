@@ -1,75 +1,12 @@
-.main-container{
-  text-align: center;
-  margin-top: 100px;
-  position: relative;
-  
-}
-
-.title-container{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.login-title {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  color: rgb(132, 152, 97);
-  font-size: 115px;
-  margin:0;
-}
-
-.login-icon {
-  width: 90px;
-  margin-left:10px;
-  display:inline-block;
-}
-
-.container{
-  text-align: center;
-}
-
-.google-login-button{
- display: inline-flex;
-    align-items: center;
-    padding: 8px 16px;
-    border: 2px solid black;
-    font-size: 25px;
-    color: black;
-    font-weight:5px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    cursor:pointer;
-    border-radius: 10px;
-    
-}
-
-.google-icon {
-    width: 40x;
-    height: 40px;
-    margin-right: 10px;
-  }
-
-  .google-login-button:hover {
-    color: rgb(132, 152, 97);
-  }
-
-
-  body {
-  margin: 0;
+body {
+  margin-top:0x;
   font-family: 'Bebas Neue', sans-serif;
   background-color: #f4f9f2;
 }
 
 .main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: whitesmoke;
-  padding: 20px 40px;
   border-bottom: 3px solid whitesmoke;
-  flex-wrap: wrap;
 }
 
 .logo-text {
@@ -83,54 +20,14 @@
   border: 2px solid #a4c38b;
   border-radius: 10px;
   font-size: 16px;
-  width: 300px;
-}
-
-.header-right {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.filter-btn, .publish-btn, .logout-btn {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.filter-btn {
-  background-color: #d4e9c4;
-  color: #4f6f3e;
-}
-
-.filter-btn:hover {
-  background-color: #bfdcb2;
-}
-
-.publish-btn {
-  background-color: #8fc866;
-  color: black;
-}
-
-.publish-btn:hover {
-  background-color: #76b14d;
-}
-
-.logout-btn {
-  background-color: #c46a6a;
-  color: black;
-}
-
-.logout-btn:hover {
-  background-color: #b04d4d;
-}
-
- .banner {
   width: 100%;
-  height: 400px; /* Puedes ajustar esta altura según lo que consideres "fino" */
+}
+
+
+
+.banner {
+  width: 100%;
+  height: 400px;
   overflow: hidden;
   position: relative;
 }
@@ -138,50 +35,78 @@
 .banner img {
   width: 100%;
   object-fit: cover;
-  object-position: top; /* Puedes ajustar a 'top', 'bottom' según qué parte de la imagen quieras mostrar */
+  object-position: top;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
 }
 
-#carga-producto {
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-top: 2px solid #ccc;
-}
-
-#carga-producto h2 {
-  margin-bottom: 1rem;
-}
-
-#form-producto {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-width: 400px;
-}
-
-#container-form {
-  margin-left: 50px;
-  margin-bottom: 25px;
-}
-
-#form-producto input,
-#form-producto select,
-#form-producto textarea {
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-
-#form-producto button {
-  background-color: #2e7d32;
-  color: white;
-  padding: 0.5rem;
-  border: none;
+/* Estilo de los filtros tipo texto (bootstrap-friendly) */
+.filtro-categoria,
+.texto-link.logout,
+a.texto-link {
+  font-size: 1.3rem;
+  color: rgb(132, 152, 97);
+  font-family: 'Bebas Neue', sans-serif;
   cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: color 0.2s ease;
 }
 
-#form-producto button:hover {
-  background-color: #1b5e20;
+/* Hover para todos los enlaces tipo texto */
+.filtro-categoria:hover,
+.texto-link.logout:hover,
+a.texto-link:hover {
+  color: #000;
+  text-decoration: underline;
 }
+
+/* Estilo para el input de búsqueda */
+.search-box {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 18px;
+  border: 2px solid #aac8a7;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #4f6f3e;
+}
+
+/* Para que el botón de logout (si es un form con botón) se vea como texto */
+form.logout {
+  margin: 0;
+}
+form.logout .logout {
+  all: unset;
+  font-size: 1.1rem;
+  color: #4f6f3e;
+  cursor: pointer;
+  font-family: 'Bebas Neue', sans-serif;
+  transition: color 0.2s ease;
+}
+form.logout .logout:hover {
+  color: #000;
+  text-decoration: underline;
+}
+/* Reduce el espacio entre la búsqueda y los filtros */
+.filtros-wrapper {
+  margin-right: 50px;
+}
+
+.btn-whatsapp {
+  background-color: #c3c9c5; /* Verde WhatsApp */
+  color: rgb(13, 12, 12);
+  border: none;
+}
+
+.btn-whatsapp:hover {
+  background-color: #67a456;
+  color: white;
+}
+

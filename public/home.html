@@ -2,53 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AgroMarketPlace - Home</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="main-header container-fluid py-3">
+    <div class="row align-items-center gx-3 gy-2">
+      <div class="col-12 col-md-3 text-center text-md-start">
+        <h1 class="logo-text">AGROMARKETPLACE</h1>
+      </div>
+      <div class="col-12 col-md-4">
+        <input
+          type="text"
+          placeholder="Buscar productos..."
+          class="search-box w-100"
+        />
+      </div>
+      <div class="col-12 col-md-5">
+  <div
+  class="filtros-wrapper d-flex flex-wrap flex-md-nowrap justify-content-md-end justify-content-center gap-3 align-items-center"
+>
+  <span class="filtro-categoria" data-categoria="Todos">Todos</span>
+  <span class="filtro-categoria" data-categoria="Frutas">Frutas</span>
+  <span class="filtro-categoria" data-categoria="Verduras">Verduras</span>
+  <span class="filtro-categoria" data-categoria="Otros">Otros</span>
 
-  <header class="main-header">
-    <div class="header-left">
-      <h1 class="logo-text">AGROMARKETPLACE</h1>
-    </div>
-    <div class="header-center">
-      <input type="text" placeholder="Buscar productos..." class="search-box">
-    </div>
-    <div class="header-right">
+  <a href="/publicar.html" class="texto-link">Publicar</a>
 
-      <button class="filter-btn">Todos</button>
-      <button class="filter-btn">Frutas</button>
-      <button class="filter-btn">Verduras</button>
-      <button class="filter-btn">Otros</button>
-      <a href="/publicar.html"><button class="publish-btn">Publicar</button></a>
-
-      <form action="/logout" method="POST" style="display:inline;">
-        <button class="logout-btn">Cerrar sesión</button>
-      </form>
+  <form action="/logout" method="POST" class="m-0">
+    <button type="submit" class="texto-link logout">Cerrar sesión</button>
+  </form>
+</div>
+      </div>
     </div>
   </header>
+
   <div class="banner">
-  <img src="https://images.unsplash.com/photo-1559740509-8202abdaa7df?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-</div> 
-  
+    <img
+      src="https://images.unsplash.com/photo-1559740509-8202abdaa7df?q=80&w=2670&auto=format&fit=crop"
+      alt="Banner"
+    />
+  </div>
+
+  <section id="lista-productos" class="container my-5">
+    <h2 class="text-center mb-4">Productos disponibles</h2>
+    <div id="productos-container" class="row g-4"></div>
+  </section>
 
 
-<section id="lista-productos" class="container">
-  <h2>Productos disponibles</h2>
-  <div id="productos-container"></div>
-</section>
 
-
-<script type="module" src="/js/home.js"></script>
-
-
+  <script type="module" src="/js/home.js"></script>
 </body>
 </html>
-
 

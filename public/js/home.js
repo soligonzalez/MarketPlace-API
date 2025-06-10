@@ -1,40 +1,55 @@
-// public/js/home.js
-import { ProductoAPI, ProductoVista } from './clases.js';
+import { ProductoAPI, ProductoVista, eliminarProducto } from './clases.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const api = new ProductoAPI();
-  const vista = new ProductoVista('productos-container');
-
-let productos = [];
+  let productos = [];
+  let usuarioActual = null;
 
   try {
-     productos = await api.obtenerProductos();
+    const usuarioRes = await fetch('/api/usuario');
+    if (usuarioRes.ok) {
+      const usuarioData = await usuarioRes.json();
+      usuarioActual = usuarioData.usuario;
+    }
+
+    productos = await api.obtenerProductos();
+    const vista = new ProductoVista('productos-container', usuarioActual);
     vista.mostrarProductos(productos);
+
+    // Filtro por categoría
+    document.querySelectorAll('.filtro-categoria').forEach(el =>
+      el.addEventListener('click', () => {
+        const cat = el.dataset.categoria;
+        vista.mostrarProductos(
+          cat === 'Todos' ? productos : productos.filter(p => p.categoria === cat)
+        );
+      })
+    );
+
+    // Búsqueda
+    document.querySelector('.search-box').addEventListener('input', e => {
+      const txt = e.target.value.trim().toLowerCase();
+      vista.mostrarProductos(
+        productos.filter(p =>
+          p.nombre.toLowerCase().includes(txt) ||
+          p.descripcion.toLowerCase().includes(txt)
+        )
+      );
+    });
+
   } catch (error) {
+    const vista = new ProductoVista('productos-container', null);
     vista.mostrarNotificacion('Error al cargar productos', false);
   }
-
-const botonesFiltro = document.querySelectorAll('.filter-btn');
-  botonesFiltro.forEach(boton => {
-    boton.addEventListener('click', () => {
-      const categoriaSeleccionada = boton.textContent;
-      if (categoriaSeleccionada === 'Todos') {
-        vista.mostrarProductos(productos);
-        return; // salimos para no filtrar más
-      }
-      const filtrados = productos.filter(p => p.categoria === categoriaSeleccionada);
-      vista.mostrarProductos(filtrados);
-    });
-  });
-    const buscador = document.querySelector('.search-box');
-    buscador.addEventListener('input', () => {
-    const texto = buscador.value.trim();
-    const filtrados = productos.filter(p =>
-      p.nombre.includes(texto) || p.descripcion.includes(texto)
-    );
-    vista.mostrarProductos(filtrados);
-  });
 });
+
+
+
+
+    
+
+
+
 
 
 

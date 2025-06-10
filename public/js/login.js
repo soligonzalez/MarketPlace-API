@@ -5,7 +5,6 @@ class LoginManual {
     loginForm.addEventListener('submit', this.doLogin);
   }
     doLogin(event) {
-    console.log("Enviando login...")
     event.preventDefault();
     const loginUsername = document.querySelector("#username").value;
     const loginPassword = document.querySelector("#password").value;
@@ -34,7 +33,6 @@ class LoginManual {
             window.location.href = '/'; // si fue exitoso, redirige
         })
         .catch(error => {
-            console.error("Error en la solicitud de login:", error);
             alert("Hubo un error al intentar iniciar sesión.");
         });
         }

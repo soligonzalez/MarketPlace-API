@@ -8,7 +8,6 @@ class Register {
   }
 
   async doRegister(event) {
-    console.log("Intentando registrar usuario...");
     event.preventDefault();
     const registerUsername = document.querySelector("#reg-username").value;
     const registerPassword = document.querySelector("#reg-password").value;
@@ -33,11 +32,10 @@ class Register {
     window.location.href = '/login'; // redirige al login si todo va bien
   } else {
     const errRes = await res.json();
-    alert('Error al registrarse: ' + (errRes.mensaje || 'Error desconocido'));
+    alert('Error al registrarse');
   }
 } catch (err) {
-  console.error('Error de red:', err);
-  alert('No se pudo conectar con el servidor.');
+  alert('No se pudo conectar con el servidor');
 }
   }
 }
