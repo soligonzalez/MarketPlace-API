@@ -129,10 +129,9 @@ class AgroBackendServer {
     });
 
     // Servidor corriendo
-    aapp.listen(process.env.PORT || 3000, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor corriendo...');
   });
-  }
 
   async showRegister(req, res) {
     res.sendFile(path.join(dirname, "public/register.html"));
